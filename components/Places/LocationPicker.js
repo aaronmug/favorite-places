@@ -8,11 +8,15 @@ import OutlinedButton from "../UI/OutlinedButton";
 import { Colors } from "../../constants/colors";
 import { useState } from "react";
 import { getMapPreview } from "../../util/location";
+import { useNavigation } from "@react-navigation/native";
 
 function LocationPicker() {
   const [pickedLocation, setPickedLocation] = useState();
+
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
+
+  const navigation = useNavigation();
 
   async function verifyPermissions() {
     if (
@@ -49,7 +53,9 @@ function LocationPicker() {
     });
   }
 
-  function pickOnMapHandler() {}
+  function pickOnMapHandler() {
+    navigation.navigate("Map");
+  }
 
   let locationPreview = <Text>No location picked yet.</Text>;
 
